@@ -1,0 +1,180 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+    --color-background-transparent: hsla(0, 0%, 100%, .85);
+    --color-background-transparent-light: hsla(0, 0%, 100%, .25);
+    --color-background-light: #fff;
+    --color-background: #f5f8fa;
+    --color-background-dark: #101214;
+    --color-border-light: #f5f8fa;
+    --color-border: #cfd7dd;
+    --color-border-dark: #57606a;
+    --color-copy-light: #57606a;
+    --color-copy: #24292e;
+    --color-copy-dark: #57606a;
+    --color-primary: red;
+}
+
+:root {
+    --font-monospace:"Space Mono", monospace;;
+    --font-sans-serif: sans-serif;
+    --font-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    --header-height: 3.5rem;
+    --footer-height: 4rem;
+}
+* {
+    box-sizing: border-box;
+    scrollbar-color: var(--color-primary) var(--color-background);
+    scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+    cursor: pointer;
+    height: theme("spacing.2");
+    width: theme("spacing.2");
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--color-primary);
+    /* border: 2px solid var(--spot-white); */
+    /* border-radius: 10px; */
+    border-radius: theme("spacing.1");
+}
+body {
+    background-color: var(--color-background);
+    color: var(--color-copy);
+    font-family: var(--font-sans-serif);
+}
+
+body {
+    position: relative;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-serif);
+    font-weight: 900 !important;
+}
+
+a {
+    color: var(--color-primary);
+}
+
+blockquote {
+    box-sizing: content-box;
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin: 4rem 2rem;
+    overflow: auto;
+    overflow: visible;
+    text-align: center;
+}
+.font-serif {
+    font-family: "Noto Sans", sans-serif;
+}
+.font-monospace{
+    font-family: var(--font-monospace);
+}
+@media (min-width: 768px) {
+    :root {
+        --header-height: 4rem;
+    }
+}
+header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #fff;
+    background-color: var(--color-background-light);
+    border-bottom: 1px solid #cfd7dd;
+    border-bottom: 1px solid var(--color-border);
+    color: #24292e;
+    color: var(--color-copy);
+    height: var(--header-height);
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transition: height .14s ease-out;
+    z-index: 10;
+}
+main {
+    margin-top: theme("spacing.14");
+    margin-top: var(--header-height);
+    min-height: calc(100vh - theme("spacing.14") - 4rem);
+    min-height: calc(100vh - var(--header-height) - var(--footer-height));
+    background: var(--color-background);
+}
+.alternate-bg > :nth-child(odd) {
+    background: var(--color-background);
+}
+.header-link {
+    align-items: center;
+    color: inherit;
+    display: flex;
+    font-size: .6rem;
+    height: var(--header-height);
+    justify-items: center;
+    padding: 0rem 0.6rem;
+    transition: color .14s ease-out;
+}
+.header-link.active,
+.header-link:hover {
+    color: red;
+    color: var(--color-primary)
+}
+.font-mono{
+    font-family: "Space Mono", monospace;
+}
+.logo{
+    display: flex;
+    width: fit-content;
+    height: calc(var(--header-height));
+    padding: 0.5rem;
+    object-fit: contain;
+}
+
+
+
+@media (min-width:640px){
+    .header-link{
+        font-size: .9rem;
+        padding: .5rem 1rem;
+    }
+}
+.bg-color-background-dark {
+    --tw-bg-opacity: 1;
+    background-color: #24292e;
+    background-color: rgba(36, 41, 46, var(--tw-bg-opacity));
+}
+.text-color-background-dark {
+    --tw-text-opacity: 1;
+    color: #24292e;
+    color: rgba(36, 41, 46, var(--tw-text-opacity));
+}
+.work-details button.active,
+.work-details button:hover {
+    background-color: red;
+    background-color: var(--color-primary);
+    border-color: #fff;
+    color: #fff;
+}
+
+.work-details button{
+    color: #24292e;
+    color: rgba(36, 41, 46, var(--tw-text-opacity));
+    background-color: white;
+}

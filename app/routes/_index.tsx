@@ -1,41 +1,41 @@
-import type { MetaFunction } from "@remix-run/node";
-
+import { defer, type MetaFunction } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
+import { about } from "~/Constants";
+import { CompanyData } from "~/DTO";
+import HeroHome from "~/components/about/Hero";
+import About from "~/components/about/about";
+import Companies from "~/components/about/companies";
+import Goals from "~/components/about/goals";
+import Technologies from "~/components/about/technologies";
+import pb, { authData } from "~/components/portfolio.server";
 export const meta: MetaFunction = () => {
   return [
     { title: "New Remix App" },
     { name: "description", content: "Welcome to Remix!" },
   ];
 };
+export const loader = async () => {
+  try {
+    let authData = await pb.admins.authWithPassword(process.env.POCKETBASE_EMAIL as string, process.env.POCKETBASE_PASS as string);
+    const companyRecords = await pb.collection(about).getFirstListItem('') as CompanyData
+    pb.authStore.clear()
+    return defer({ companies: companyRecords });
+} catch (err) {
+  console.error(err);
+  return { companies: null}
+}
+  
+};
 
 export default function Index() {
+  const data = useLoaderData<typeof loader>()
   return (
-    <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8" }}>
-      <h1>Welcome to Remix</h1>
-      <ul>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/blog"
-            rel="noreferrer"
-          >
-            15m Quickstart Blog Tutorial
-          </a>
-        </li>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/jokes"
-            rel="noreferrer"
-          >
-            Deep Dive Jokes App Tutorial
-          </a>
-        </li>
-        <li>
-          <a target="_blank" href="https://remix.run/docs" rel="noreferrer">
-            Remix Docs
-          </a>
-        </li>
-      </ul>
+    <div className="alternate-bg">
+      <HeroHome/>
+      <About/>
+      <Goals/>
+      <Technologies/>
+      <Companies data={data.companies as CompanyData}/>
     </div>
   );
 }
