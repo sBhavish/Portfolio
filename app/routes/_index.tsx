@@ -30,7 +30,7 @@ export const loader = async () => {
 export default function Index() {
   const data = useLoaderData<typeof loader>()
   return (
-    <div className="alternate-bg">
+    <div>
       <HeroHome/>
       <About/>
       <Goals/>

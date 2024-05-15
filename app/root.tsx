@@ -8,6 +8,7 @@ import {
 import styles from "~/styles/root.css?url";
 import tailwindcss from "~/tailwind.css?url";
 import HeaderComponent from "./components/header";
+import FooterComponent from "./components/footer";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: styles },
@@ -35,6 +36,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <HeaderComponent/>
         {children}
         <ScrollRestoration />
+        <FooterComponent/>
         <Scripts />
       </body>
     </html>

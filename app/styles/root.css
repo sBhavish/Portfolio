@@ -118,9 +118,7 @@ main {
     min-height: calc(100vh - var(--header-height) - var(--footer-height));
     background: var(--color-background);
 }
-.alternate-bg > :nth-child(odd) {
-    background: var(--color-background);
-}
+
 .header-link {
     align-items: center;
     color: inherit;
@@ -177,4 +175,28 @@ main {
     color: #24292e;
     color: rgba(36, 41, 46, var(--tw-text-opacity));
     background-color: white;
+}
+.light-bg{
+    background: var(--color-background-light) !important;
+}
+.company-slides  img{
+    width: 10rem;
+    margin: 0 auto;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+}
+.company-slides >ul{
+    display: grid;
+    gap:2rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.company-slides > ul > li{
+    display: grid;
+    grid-column: span 1 / span 1;
+    filter: grayscale(1);
+    transition: filter .3s ease-in-out;
+}
+.company-slides>ul>li:hover,
+.company-slides>ul>li:focus {
+    filter: grayscale(0);
 }
