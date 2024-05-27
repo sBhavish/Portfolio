@@ -4,8 +4,10 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  isRouteErrorResponse,
   json,
   useLoaderData,
+  useRouteError,
 } from "@remix-run/react";
 import styles from "~/styles/root.css?url";
 import tailwindcss from "~/tailwind.css?url";
@@ -20,7 +22,7 @@ export const links: LinksFunction = () => [
     type: "image/svg",
   },
   { rel: "stylesheet", href: styles },
-  { rel: "stylesheet", href: tailwindcss},
+  { rel: "stylesheet", href: tailwindcss },
   { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
   {
     rel: 'stylesheet',
@@ -48,12 +50,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <HeaderComponent/>
+        <HeaderComponent />
         {children}
         <ScrollRestoration />
-        <FooterComponent/>
+        <FooterComponent />
         <Scripts />
-        <script dangerouslySetInnerHTML={{__html: `window.ENV = ${JSON.stringify(data.ENV)}`}}/>
+        <script dangerouslySetInnerHTML={{ __html: `window.ENV = ${JSON.stringify(data.ENV)}` }} />
       </body>
     </html>
   );
@@ -61,4 +63,33 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   return <Outlet />;
+}
+export function ErrorBoundary() {
+  const error = useRouteError();
+  console.log(JSON.stringify(error))
+  if (isRouteErrorResponse(error)) {
+    return (
+      <Layout>
+        <h1>
+          {error.status} {error.statusText}
+        </h1>
+        <p>{error.data}</p>
+      </Layout>
+    );
+  } else if (error instanceof Error) {
+    return (
+      <Layout>
+        <h1>Error</h1>
+        <p>{error.message}</p>
+        <p>Ze stack trace is:</p>
+        <pre>{error.stack}</pre>
+      </Layout>
+    );
+  } else {
+    return (
+      <Layout>
+        <h1>Unknown Error</h1>
+      </Layout>
+      );
+  }
 }

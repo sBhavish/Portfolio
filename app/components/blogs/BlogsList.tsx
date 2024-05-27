@@ -7,7 +7,7 @@ export default function BlogsList({ minimalBlogData }: { minimalBlogData: Blogs 
         <>
             <div className="grid w-full gap-10 md:grid-cols-2 lg:grid-cols-3">
                 {minimalBlogData?.items
-                    ?.filter(item => item.featured === false)
+                    ?.filter(item => item.featured === false && item.released == true)
                     .map((item, index) => {
                         return (
                             <Link
