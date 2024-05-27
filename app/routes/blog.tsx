@@ -4,7 +4,19 @@ import { Blogs } from "~/DTO";
 import Featured from "~/components/blogs/Featured";
 import BlogHero from "~/components/blogs/blogHero";
 import pb from "~/components/portfolio.server";
-
+export const meta: MetaFunction = () => {
+    return [
+        { title: "Blogs" },
+        {
+            property: "og:title",
+            content: "Blogs/Articles by Bhavish",
+        },
+        {
+            name: "description",
+            content: "Blogs/Articles by Bhavish",
+        },
+    ];
+};
 export const loader = async ({ request }: LoaderFunctionArgs) => {
         let { searchParams } = new URL(request.url)
         let page = searchParams.get('page')
@@ -15,7 +27,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
         }
         pb.authStore.save(process.env.POCKETBASE_TOKEN as string, null)
         const resultList = await pb.collection(blogs).getList(pageNumber, PERPAGE, {
-            fields: 'id,title,updated,heroImage,collectionId,created',
+            fields: 'id,title,updated,heroImage,collectionId,created,featured,released',
         }) as Blogs;
         return defer({ blogsData: resultList });
 };

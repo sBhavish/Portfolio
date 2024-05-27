@@ -35,7 +35,7 @@ export default function BlogContent (){
                 <div className="hero p-4 text-center py-20 md:py-40">
                     <h1 className="inline-block font-font-serif text-xl font-extrabold md:text-4xl">
                         <div className="font-font-monospace text-base font-normal md:text-2xl">{convertDateString(data.blog.updated)}</div>
-                        <div className="bg-gradient-to-r from-orange-600 via-red-500 to-orange-400 inline-block text-transparent bg-clip-text px-3 text-4xl md:text-7xl">🗑️ Throwaway Code</div>
+                        <div className="bg-gradient-to-r from-orange-600 via-red-500 to-orange-400 text-transparent bg-clip-text px-3 text-4xl md:text-7xl">{data.blog.title}</div>
                     </h1>
                 </div>
             </section>
@@ -45,10 +45,10 @@ export default function BlogContent (){
                 alt="Hero Image for this blog" />
             <div className="my-8 md:my-12 m-auto w-full max-w-4xl p-4">
                 <h2 className="bg-gradient-to-r from-orange-600 via-red-500 to-orange-400 text-transparent bg-clip-text m-0 mb-2 inline-block text-left text-3xl md:text-4xl">
-                    Improving code quality
+                    {data.blog.title}
                 </h2>
                 <div className="font-font-monospace text-sm">
-                    January 10, 2021
+                    {convertDateString(data.blog.updated)}
                 </div>
             </div>
             <section className="wysiwyg m-auto w-full max-w-4xl font-sans p-4 mb-10" dangerouslySetInnerHTML={{__html: `${data.blog.markupContent}`}}>

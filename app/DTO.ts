@@ -26,6 +26,8 @@ export interface Item {
     collectionName: string
     created: string
     heroImage: string
+    featured: boolean
+    released:boolean
     id: string
     markupContent: string
     title: string

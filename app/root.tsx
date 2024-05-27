@@ -14,6 +14,11 @@ import FooterComponent from "./components/footer";
 import { getEnv } from "./provider.server";
 
 export const links: LinksFunction = () => [
+  {
+    rel: "icon",
+    href: "/siteicon.svg",
+    type: "image/svg",
+  },
   { rel: "stylesheet", href: styles },
   { rel: "stylesheet", href: tailwindcss},
   { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
