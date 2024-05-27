@@ -1,9 +1,10 @@
 import { HeadersFunction, MetaFunction } from "@remix-run/node";
 import { Outlet, isRouteErrorResponse, useRouteError } from "@remix-run/react";
 import notFoundImage from "app/images/svg/404.svg"
+import { CACHE_LIV } from "~/Constants";
 export let headers: HeadersFunction = () => {
     return {
-        "Cache-Control": "public, s-maxage=60",
+        "Cache-Control": `public, s-maxage=${CACHE_LIV}`,
     };
 };
 export const meta: MetaFunction = () => {

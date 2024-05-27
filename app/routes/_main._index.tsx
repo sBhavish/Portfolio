@@ -10,7 +10,7 @@ import Technologies from "~/components/about/technologies";
 import pb from "~/components/portfolio.server";
 export let headers: HeadersFunction = () => {
   return {
-    "Cache-Control": "public, s-maxage=60",
+    "Cache-Control": `public, s-maxage=3600`,
   };
 };
 export const meta: MetaFunction = () => {
@@ -18,28 +18,28 @@ export const meta: MetaFunction = () => {
     { title: "About Bhavish" },
     { name: "description", content: "Welcome to my website!👾" },
   ];
-};  
+};
 export const loader = async () => {
   try {
-    pb.authStore.save(process.env.POCKETBASE_TOKEN as string,null)
+    pb.authStore.save(process.env.POCKETBASE_TOKEN as string, null)
     const companyRecords = await pb.collection(about).getFirstListItem('') as CompanyData
     return defer({ companies: companyRecords });
-} catch (err) {
-  console.error(err);
-  return { companies: null}
-}
-  
+  } catch (err) {
+    console.error(err);
+    return { companies: null }
+  }
+
 };
 
 export default function Index() {
   const data = useLoaderData<typeof loader>()
   return (
     <div>
-      <HeroHome/>
-      <About/>
-      <Goals/>
-      <Technologies/>
-      <Companies data={data.companies as CompanyData}/>
+      <HeroHome />
+      <About />
+      <Goals />
+      <Technologies />
+      <Companies data={data.companies as CompanyData} />
     </div>
   );
 }

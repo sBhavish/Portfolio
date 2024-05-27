@@ -1,4 +1,5 @@
 import { HeadersFunction } from "@remix-run/node";
+import { CACHE_LIV } from "~/Constants";
 import { WorkPreview } from "~/components/portfolio/cards";
 export const meta: MetaFunction = () => {
     return [
@@ -15,7 +16,7 @@ export const meta: MetaFunction = () => {
 };
 export let headers: HeadersFunction = () => {
     return {
-        "Cache-Control": "public, s-maxage=60",
+        "Cache-Control": `public, s-maxage=${CACHE_LIV}`,
     };
 };
 export default function PortfolioMain() {
@@ -33,7 +34,7 @@ export default function PortfolioMain() {
                 </div>
                 <div className="mx-auto md:max-w-6xl">
                     <div className="my-20 grid grid-cols-1 gap-16 p-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
-                        <WorkPreview title={'RocketCMS'} url={`/portfolio/my-text`} spanTitle={'Personal'} description={`RocketCMS lets anyone manage your website using the components you've designed.`}/>
+                        <WorkPreview title={'RocketCMS'} url={`/portfolio/my-text`} spanTitle={'Personal'} description={`RocketCMS lets anyone manage your website using the components you've designed.`} />
                         <WorkPreview title={'RocketCMS'} url={`/portfolio/my-text`} spanTitle={'Personal'} description={`RocketCMS lets anyone manage your website using the components you've designed.`} />
                         <WorkPreview title={'RocketCMS'} url={`/portfolio/my-text`} spanTitle={'Personal'} description={`RocketCMS lets anyone manage your website using the components you've designed.`} />
                     </div>

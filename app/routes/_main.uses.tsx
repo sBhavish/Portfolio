@@ -1,8 +1,9 @@
 import { HeadersFunction } from "@remix-run/node";
+import { CACHE_LIV } from "~/Constants";
 
 export let headers: HeadersFunction = () => {
     return {
-        "Cache-Control": "public, s-maxage=3600",
+        "Cache-Control": `public, s-maxage=${CACHE_LIV}`,
     };
 };
 export default function Index() {
@@ -15,7 +16,7 @@ export default function Index() {
                         <div className="py-2 bg-gradient-to-r from-orange-600 via-red-500 to-orange-400 inline-block text-transparent bg-clip-text px-3 text-4xl md:text-7xl">What I'm using?</div>
                     </h1>
                 </div>
-            </section> 
+            </section>
             <section className="m-auto max-w-6xl py-20 px-4 md:my-10">
                 <h2 className="pb-8 text-3xl">Hardware <span className="ml-2">💻</span></h2>
                 <p>I've been happily developing on a Mac over the last 10+ years. However, I grew up on PC's and built a few rigs over the years for gaming and work. Now days a perk of working in Software our employer often supplies a well equipped box.</p>

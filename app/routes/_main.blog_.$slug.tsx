@@ -1,6 +1,6 @@
 import { HeadersFunction, json } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
-import { blogs } from "~/Constants"
+import { CACHE_LIV, blogs } from "~/Constants"
 import { Item } from "~/DTO"
 import pb from "~/components/portfolio.server"
 import hljs from 'highlight.js';
@@ -10,24 +10,24 @@ import { convertDateString } from "~/utils"
 
 export async function loader({ params }: LoaderFunctionArgs) {
     const blog = await pb.collection(blogs).getFirstListItem(`title = "${params.slug}"`) as Item
-    return json({blog})
+    return json({ blog })
 }
 export let headers: HeadersFunction = () => {
     return {
-        "Cache-Control": "public, s-maxage=60",
+        "Cache-Control": `public, s-maxage=${CACHE_LIV}`,
     };
 };
 export const meta: MetaFunction = ({ data }) => {
     return [
-        { title: data.blog.title  as string },
+        { title: data.blog.title as string },
         {
             name: 'description',
             content: `A Blog on ${data.blog.title}`,
         },
     ]
 }
-export default function BlogContent (){
-    const data =  useLoaderData<typeof loader>()
+export default function BlogContent() {
+    const data = useLoaderData<typeof loader>()
 
     useEffect(() => {
         document.querySelectorAll('pre code').forEach((block) => {
@@ -56,8 +56,8 @@ export default function BlogContent (){
                     {convertDateString(data.blog.updated)}
                 </div>
             </div>
-            <section className="wysiwyg m-auto w-full max-w-4xl font-sans p-4 mb-10" dangerouslySetInnerHTML={{__html: `${data.blog.markupContent}`}}>
-                
+            <section className="wysiwyg m-auto w-full max-w-4xl font-sans p-4 mb-10" dangerouslySetInnerHTML={{ __html: `${data.blog.markupContent}` }}>
+
             </section>
         </main>
     )

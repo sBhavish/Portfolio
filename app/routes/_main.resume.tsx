@@ -1,6 +1,6 @@
 import { HeadersFunction, defer, type MetaFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-import { about } from "~/Constants";
+import { CACHE_LIV, about } from "~/Constants";
 import { CompanyData } from "~/DTO";
 import envelope from "app/images/svg/envelope.svg";
 import me from "/app/images/me.jpeg"
@@ -8,13 +8,13 @@ import me from "/app/images/me.jpeg"
 import pb from "~/components/portfolio.server";
 export const meta: MetaFunction = () => {
     return [
-        { title: `${ new Date().getFullYear() } Resume` },
+        { title: `${new Date().getFullYear()} Resume` },
         { name: "description", content: "Here is my resume!" },
     ];
 };
 export let headers: HeadersFunction = () => {
     return {
-        "Cache-Control": "public, s-maxage=60",
+        "Cache-Control": `public, s-maxage=${CACHE_LIV}`,
     };
 };
 export const loader = async () => {
@@ -43,7 +43,7 @@ export default function Index() {
                             </div>
                             <div className="flex flex-shrink-0 flex-col gap-2 p-4">
                                 <a className="flex items-center gap-4 break-words break-all text-sm text-color-copy-light" href="mailto:bhavishpoojary58@gmail.com" rel="noopener noreferrer" target="_blank">
-                                    <img alt="Follow me" height="14" src={envelope} width="14"/>
+                                    <img alt="Follow me" height="14" src={envelope} width="14" />
                                     me@gmail.com
                                 </a>
                                 <a className="flex items-center gap-4 break-words break-all text-sm text-color-copy-light" href="mailto:bhavishpoojary58@gmail.com" rel="noopener noreferrer" target="_blank">
@@ -81,7 +81,7 @@ export default function Index() {
                                 <div className="flex flex-col gap-10 md:flex-row">
                                     <div className="flex flex-col gap-2 text-base md:basis-[160px] print:basis-8">
                                         <div className="flex">
-                                            <h3 className="flex items-center gap-2 font-bold"><a className="underline-offset-4 hover:underline print:text-color-copy-dark" href="https://shiftsmart.com/" rel="noreferrer" target="_blank">Shiftsmart</a><img alt="Shiftsmart favicon" className="h-4 w-4" height="auto" loading="eager" src="https://assets-global.website-files.com/602a3f3e454f14956d14543a/602a3f3e454f1438b61455af_ShiftsmartIcon.png" width="auto"/></h3>
+                                            <h3 className="flex items-center gap-2 font-bold"><a className="underline-offset-4 hover:underline print:text-color-copy-dark" href="https://shiftsmart.com/" rel="noreferrer" target="_blank">Shiftsmart</a><img alt="Shiftsmart favicon" className="h-4 w-4" height="auto" loading="eager" src="https://assets-global.website-files.com/602a3f3e454f14956d14543a/602a3f3e454f1438b61455af_ShiftsmartIcon.png" width="auto" /></h3>
                                         </div>
                                         <h3 className="uppercase- text-xs font-medium">
                                             <div className="uppercase">Staff Engineer</div>
@@ -105,7 +105,7 @@ export default function Index() {
                                 <div className="flex flex-col gap-10 md:flex-row">
                                     <div className="flex flex-col gap-2 text-base md:basis-[160px] print:basis-8">
                                         <div className="flex">
-                                            <h3 className="flex items-center gap-2 font-bold"><a className="underline-offset-4 hover:underline print:text-color-copy-dark" href="https://haldi.com/" rel="noreferrer" target="_blank">Haldi</a><img alt="Haldi favicon" className="h-4 w-4" height="auto" loading="eager" src="https://haldi.com/favicon.ico" width="auto"/></h3>
+                                            <h3 className="flex items-center gap-2 font-bold"><a className="underline-offset-4 hover:underline print:text-color-copy-dark" href="https://haldi.com/" rel="noreferrer" target="_blank">Haldi</a><img alt="Haldi favicon" className="h-4 w-4" height="auto" loading="eager" src="https://haldi.com/favicon.ico" width="auto" /></h3>
                                         </div>
                                         <h3 className="uppercase- text-xs font-medium">
                                             <div className="uppercase">Principal Engineer</div>
@@ -133,7 +133,7 @@ export default function Index() {
                                     <div className="flex flex-col gap-2 text-base md:basis-[160px] print:basis-8">
                                         <div className="flex">
                                             <h3 className="flex items-center gap-2 font-bold"><a className="underline-offset-4 hover:underline print:text-color-copy-dark" href="https://thredup.com" rel="noreferrer" target="_blank">thredUP</a>
-                                            <img alt="thredUP favicon" className="h-4 w-4" height="auto" loading="eager" src="https://cf-tup-assets.thredup.com/shop/images/manifest_v2/favicon_96.png" width="auto"/></h3>
+                                                <img alt="thredUP favicon" className="h-4 w-4" height="auto" loading="eager" src="https://cf-tup-assets.thredup.com/shop/images/manifest_v2/favicon_96.png" width="auto" /></h3>
                                         </div>
                                         <h3 className="uppercase- text-xs font-medium">
                                             <div className="uppercase">Staff Engineer</div>
@@ -161,7 +161,7 @@ export default function Index() {
                                     <div className="flex flex-col gap-2 text-base md:basis-[160px] print:basis-8">
                                         <div className="flex">
                                             <h3 className="flex items-center gap-2 font-bold"><a className="underline-offset-4 hover:underline print:text-color-copy-dark" href="https://bynd.com" rel="noreferrer" target="_blank">Bynd</a>
-                                            <img alt="Bynd favicon" className="h-4 w-4" height="auto" loading="eager" src="https://assets-global.website-files.com/646e3fdd996bec75dd974e1f/64c389c72e68f265c7ab93bb_bynd-favicon.jpg" width="auto"/></h3>
+                                                <img alt="Bynd favicon" className="h-4 w-4" height="auto" loading="eager" src="https://assets-global.website-files.com/646e3fdd996bec75dd974e1f/64c389c72e68f265c7ab93bb_bynd-favicon.jpg" width="auto" /></h3>
                                         </div>
                                         <h3 className="uppercase- text-xs font-medium">
                                             <div className="uppercase">Technical Team Lead</div>
@@ -193,7 +193,7 @@ export default function Index() {
                     </div>
                 </div>
 
-           </div>
+            </div>
         </main>
     );
 }

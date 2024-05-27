@@ -7,7 +7,7 @@ export default function Featured({ minimalBlogData }: { minimalBlogData: Blogs }
         <>
             <section className="section-full m-auto flex max-w-6xl flex-col items-center justify-center gap-20 px-4 py-20">
                 <div className="flex flex-col gap-20 md:flex-row">
-                    <a className="blog-preview relative flex flex-col basis-2/3" href="/blog/github-copilot">
+                    <a className="blog-preview relative flex flex-col basis-2/3" href={`/blog/${featuredItem?.title}`}>
                         <img alt={featuredItem?.title} height="auto" loading="lazy" src={`${ENV.BASE_URL}/api/files/${featuredItem?.collectionId}/${featuredItem?.id}/${featuredItem?.heroImage}`} width="auto" />
                         <h2 className="mt-4 mb-2 text-2xl">{featuredItem?.title} </h2>
                         <div className="font-monospace text-sm"> {formatDateString(featuredItem?.updated, 'DD/MM/YYYY')} </div>
