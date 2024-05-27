@@ -4,11 +4,14 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  json,
+  useLoaderData,
 } from "@remix-run/react";
 import styles from "~/styles/root.css?url";
 import tailwindcss from "~/tailwind.css?url";
 import HeaderComponent from "./components/header";
 import FooterComponent from "./components/footer";
+import { getEnv } from "./provider.server";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: styles },
@@ -23,7 +26,14 @@ export const links: LinksFunction = () => [
     href: "https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
   }
 ];
+
+export const loader = async () => {
+  return json({
+    ENV: getEnv()
+  });
+};
 export function Layout({ children }: { children: React.ReactNode }) {
+  const data = useLoaderData<typeof loader>()
   return (
     <html lang="en">
       <head>
@@ -38,6 +48,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <ScrollRestoration />
         <FooterComponent/>
         <Scripts />
+        <script dangerouslySetInnerHTML={{__html: `window.ENV = ${JSON.stringify(data.ENV)}`}}/>
       </body>
     </html>
   );

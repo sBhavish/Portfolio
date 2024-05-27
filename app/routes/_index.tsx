@@ -7,18 +7,17 @@ import About from "~/components/about/about";
 import Companies from "~/components/about/companies";
 import Goals from "~/components/about/goals";
 import Technologies from "~/components/about/technologies";
-import pb, { authData } from "~/components/portfolio.server";
+import pb from "~/components/portfolio.server";
 export const meta: MetaFunction = () => {
   return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
+    { title: "About Bhavish" },
+    { name: "description", content: "Welcome to my website!👾" },
   ];
-};
+};  
 export const loader = async () => {
   try {
-    let authData = await pb.admins.authWithPassword(process.env.POCKETBASE_EMAIL as string, process.env.POCKETBASE_PASS as string);
+    pb.authStore.save(process.env.POCKETBASE_TOKEN as string,null)
     const companyRecords = await pb.collection(about).getFirstListItem('') as CompanyData
-    pb.authStore.clear()
     return defer({ companies: companyRecords });
 } catch (err) {
   console.error(err);

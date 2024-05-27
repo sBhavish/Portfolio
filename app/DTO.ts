@@ -13,3 +13,21 @@ export interface CompanyData {
     id: string
     updated: string
 }
+export interface Blogs {
+    page: number
+    perPage: number
+    totalItems: number
+    totalPages: number
+    items: Item[]
+}
+
+export interface Item {
+    collectionId: string
+    collectionName: string
+    created: string
+    heroImage: string
+    id: string
+    markupContent: string
+    title: string
+    updated: string
+}
