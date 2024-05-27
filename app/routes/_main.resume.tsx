@@ -3,6 +3,7 @@ import { useLoaderData } from "@remix-run/react";
 import { about } from "~/Constants";
 import { CompanyData } from "~/DTO";
 import envelope from "app/images/svg/envelope.svg";
+import me from "/app/images/me.jpeg"
 
 import pb from "~/components/portfolio.server";
 export const meta: MetaFunction = () => {
@@ -33,7 +34,7 @@ export default function Index() {
                     <aside className="md:w-1/5 print:hidden">
                         <div className="sticky top-32">
                             <div className="flex flex-row items-center justify-center gap-6 md:flex-col">
-                                <img alt="Bhavish" className="bg-gradient-to-r from-orange-600 via-red-500 to-orange-400 aspect-square max-h-32 cursor-pointer overflow-hidden rounded-full p-1 transition-transform hover:scale-110 active:rotate-6 md:max-h-40" height="auto" loading="eager" src="/app/images/me.jpeg" width="auto"></img>
+                                <img alt="Bhavish" className="bg-gradient-to-r from-orange-600 via-red-500 to-orange-400 aspect-square max-h-32 cursor-pointer overflow-hidden rounded-full p-1 transition-transform hover:scale-110 active:rotate-6 md:max-h-40" height="auto" loading="eager" src={me} width="auto"></img>
                             </div>
                             <div className="flex flex-shrink-0 flex-col gap-2 p-4">
                                 <a className="flex items-center gap-4 break-words break-all text-sm text-color-copy-light" href="mailto:bhavishpoojary58@gmail.com" rel="noopener noreferrer" target="_blank">

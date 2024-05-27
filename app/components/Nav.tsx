@@ -1,11 +1,13 @@
+import { NavLink } from "@remix-run/react";
+
 export default function Nav() {
     return (
         <nav className="flex h-full font-mono">
-            <a aria-current="page" className="header-link active" href="/">About</a>
-            <a className="header-link" href="/blog">Blog</a>
-            <a className="header-link" href="/portfolio">Portfolio</a>
-            <a className="header-link" href="/resume">Resume</a>
-            <a className="header-link" href="/uses">Uses</a>
+            <NavLink prefetch="intent" aria-current="page" className="header-link" to="/">About</NavLink>
+            <NavLink prefetch="intent" className="header-link" to="/blog">Blog</NavLink>
+            <NavLink prefetch="intent" className="header-link" to="/portfolio">Portfolio</NavLink>
+            <NavLink prefetch="intent" className="header-link" to="/resume">Resume</NavLink>
+            <NavLink prefetch="intent" className="header-link" to="/uses">Uses</NavLink>
         </nav>
 
     );
