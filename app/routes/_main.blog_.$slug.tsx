@@ -1,4 +1,4 @@
-import { json } from "@remix-run/node"
+import { HeadersFunction, json } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
 import { blogs } from "~/Constants"
 import { Item } from "~/DTO"
@@ -12,6 +12,11 @@ export async function loader({ params }: LoaderFunctionArgs) {
     const blog = await pb.collection(blogs).getFirstListItem(`title = "${params.slug}"`) as Item
     return json({blog})
 }
+export let headers: HeadersFunction = () => {
+    return {
+        "Cache-Control": "public, s-maxage=60",
+    };
+};
 export const meta: MetaFunction = ({ data }) => {
     return [
         { title: data.blog.title  as string },

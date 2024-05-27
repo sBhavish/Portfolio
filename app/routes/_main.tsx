@@ -1,9 +1,15 @@
+import { HeadersFunction } from "@remix-run/node";
 import { Outlet } from "@remix-run/react";
 import {
     isRouteErrorResponse,
     useRouteError,
 } from "@remix-run/react";
 import errImage from "app/images/man.webp"
+export let headers: HeadersFunction = () => {
+    return {
+        "Cache-Control": "public, s-maxage=60",
+    };
+};
 export default function MainLayout() {
 
     return (

@@ -5,11 +5,6 @@ import { Blogs } from "~/DTO";
 import Featured from "~/components/blogs/Featured";
 import BlogHero from "~/components/blogs/blogHero";
 import pb from "~/components/portfolio.server";
-export let headers: HeadersFunction = () => {
-    return {
-        "Cache-Control": "public, s-maxage=60",
-    };
-};
 export const meta: MetaFunction = () => {
     return [
         { title: "Blogs" },
@@ -22,6 +17,11 @@ export const meta: MetaFunction = () => {
             content: "Blogs/Articles by Bhavish",
         },
     ];
+};
+export let headers: HeadersFunction = () => {
+    return {
+        "Cache-Control": "public, s-maxage=60",
+    };
 };
 export const loader = async ({ request }: LoaderFunctionArgs) => {
         let { searchParams } = new URL(request.url)

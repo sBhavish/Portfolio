@@ -1,3 +1,10 @@
+import { HeadersFunction } from "@remix-run/node";
+
+export let headers: HeadersFunction = () => {
+    return {
+        "Cache-Control": "public, s-maxage=3600",
+    };
+};
 export default function Index() {
     return (
         <>
@@ -5,7 +12,7 @@ export default function Index() {
                 <div className="hero p-4 text-center mx-auto max-w-6xl py-20 md:py-40">
                     <h1 className="inline-block font-font-serif text-xl font-extrabold md:text-4xl">
                         <div className="font-mono text-base font-normal md:text-2xl text-white">If you're wondering</div>
-                        <div className="bg-gradient-to-r from-orange-600 via-red-500 to-orange-400 inline-block text-transparent bg-clip-text px-3 text-4xl md:text-7xl">What I'm using?</div>
+                        <div className="py-2 bg-gradient-to-r from-orange-600 via-red-500 to-orange-400 inline-block text-transparent bg-clip-text px-3 text-4xl md:text-7xl">What I'm using?</div>
                     </h1>
                 </div>
             </section> 

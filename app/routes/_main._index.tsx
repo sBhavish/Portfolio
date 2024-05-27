@@ -1,4 +1,4 @@
-import { defer, type MetaFunction } from "@remix-run/node";
+import { HeadersFunction, defer, type MetaFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { about } from "~/Constants";
 import { CompanyData } from "~/DTO";
@@ -8,6 +8,11 @@ import Companies from "~/components/about/companies";
 import Goals from "~/components/about/goals";
 import Technologies from "~/components/about/technologies";
 import pb from "~/components/portfolio.server";
+export let headers: HeadersFunction = () => {
+  return {
+    "Cache-Control": "public, s-maxage=60",
+  };
+};
 export const meta: MetaFunction = () => {
   return [
     { title: "About Bhavish" },

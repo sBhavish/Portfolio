@@ -10,7 +10,7 @@ export default function HeroHome() {
                                 <div className="font-monospace text-base font-normal md:text-2xl">
                                     <span className="whitespace-nowrap">A Software Engineer</span>
                                 </div>
-                                <div className="bg-gradient-to-r from-orange-600 via-red-500 to-orange-400 inline-block text-transparent bg-clip-text px-3 text-4xl md:text-7xl">
+                                <div className="py-2 bg-gradient-to-r from-orange-600 via-red-500 to-orange-400 inline-block text-transparent bg-clip-text px-3 text-4xl md:text-7xl">
                                     Bhavish Kotian
                                 </div>
                             </h1>

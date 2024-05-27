@@ -302,3 +302,39 @@ ol {
     white-space: pre;
     overflow-x: auto;
 }
+.text-color-copy-dark,
+.text-color-copy-light {
+    --tw-text-opacity: 1;
+    color: #57606a;
+    color: rgba(87, 96, 106, var(--tw-text-opacity));
+}
+.work-preview span {
+    letter-spacing: -.05em
+}
+
+.work-preview p {
+    color: #57606a;
+    color: var(--color-copy-dark);
+    transition: color .14s ease-out
+}
+
+.work-preview:hover p {
+    color: #24292e;
+    color: var(--color-copy)
+}
+
+.work-preview:hover h3 {
+    --tw-gradient-to: rgba(255, 0, 0, 0) var(--tw-gradient-to-position);
+    background-image: linear-gradient(to right, red var(--tw-gradient-from-position), #3b82f6 var(--tw-gradient-to-position));
+    background-image: linear-gradient(to right, var(--tw-gradient-stops));
+    --tw-gradient-from: red var(--tw-gradient-from-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+    --tw-gradient-to: #3b82f6 var(--tw-gradient-to-position);
+    animation: gradient 8s ease infinite;
+    animation: gradient var(--duration-text) ease infinite;
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-size: 400% 400%;
+    color: transparent;
+    overflow: visible
+}

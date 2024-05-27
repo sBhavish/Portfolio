@@ -10,7 +10,7 @@ export default function Featured({ minimalBlogData }: { minimalBlogData: Blogs }
                     <a className="blog-preview relative flex flex-col basis-2/3" href="/blog/github-copilot">
                         <img alt={featuredItem?.title} height="auto" loading="lazy" src={`${ENV.BASE_URL}/api/files/${featuredItem?.collectionId}/${featuredItem?.id}/${featuredItem?.heroImage}`} width="auto" />
                         <h2 className="mt-4 mb-2 text-2xl">{featuredItem?.title} </h2>
-                        <div className="font-font-monospace text-sm"> {formatDateString(featuredItem?.updated, 'DD/MM/YYYY')} </div>
+                        <div className="font-monospace text-sm"> {formatDateString(featuredItem?.updated, 'DD/MM/YYYY')} </div>
                     </a>
                     <div className="flex flex-col gap-10 basis-1/3">
                         <div>

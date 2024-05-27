@@ -1,4 +1,4 @@
-import { defer, type MetaFunction } from "@remix-run/node";
+import { HeadersFunction, defer, type MetaFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { about } from "~/Constants";
 import { CompanyData } from "~/DTO";
@@ -11,6 +11,11 @@ export const meta: MetaFunction = () => {
         { title: `${ new Date().getFullYear() } Resume` },
         { name: "description", content: "Here is my resume!" },
     ];
+};
+export let headers: HeadersFunction = () => {
+    return {
+        "Cache-Control": "public, s-maxage=60",
+    };
 };
 export const loader = async () => {
     try {

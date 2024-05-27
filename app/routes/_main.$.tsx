@@ -1,5 +1,17 @@
+import { HeadersFunction, MetaFunction } from "@remix-run/node";
 import { Outlet, isRouteErrorResponse, useRouteError } from "@remix-run/react";
 import notFoundImage from "app/images/svg/404.svg"
+export let headers: HeadersFunction = () => {
+    return {
+        "Cache-Control": "public, s-maxage=60",
+    };
+};
+export const meta: MetaFunction = () => {
+    return [
+        { title: "Not found page" },
+        { name: "description", content: "Invalid Route" },
+    ];
+};
 export default function MainLayout() {
 
     return (

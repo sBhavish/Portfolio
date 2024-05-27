@@ -24,7 +24,7 @@ export default function BlogsList({ minimalBlogData }: { minimalBlogData: Blogs 
                                     width="auto"
                                 />
                                 <h2 className="mt-4 mb-2 text-2xl"> {item.title} </h2>
-                                <div className="font-font-monospace text-sm"> {formatDateString(item.updated, 'DD/MM/YYYY')} </div>
+                                <div className="font-monospace text-sm"> {formatDateString(item.updated, 'DD/MM/YYYY')} </div>
                             </Link>
                         );
                     })}
