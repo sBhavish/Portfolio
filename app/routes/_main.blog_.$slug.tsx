@@ -1,4 +1,4 @@
-import { HeadersFunction, json } from "@remix-run/node"
+import { HeadersFunction, LoaderFunctionArgs, json, redirect } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
 import { CACHE_LIV, blogs } from "~/Constants"
 import { Item } from "~/DTO"
@@ -9,8 +9,13 @@ import { useEffect } from "react"
 import { convertDateString } from "~/utils"
 
 export async function loader({ params }: LoaderFunctionArgs) {
-    const blog = await pb.collection(blogs).getFirstListItem(`title = "${params.slug}"`) as Item
-    return json({ blog })
+    try{
+        const blog = await pb.collection(blogs).getFirstListItem(`title = "${params.slug}"`) as Item
+        return json({ blog })
+    }
+    catch(err){
+            throw redirect('./404-not-found')
+    }
 }
 export let headers: HeadersFunction = () => {
     return {
