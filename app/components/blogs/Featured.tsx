@@ -21,7 +21,7 @@ export default function Featured({ minimalBlogData }: { minimalBlogData: Blogs }
                                         ?.filter(item => item.released === false)
                                         .map((item, index) => {
                                             return (
-                                                <li className="mb-2 rounded-md border bg-color-background-light p-2 text-sm">{item.title}</li>
+                                                <li key={index} className="mb-2 rounded-md border bg-color-background-light p-2 text-sm">{item.title}</li>
                                             );
                                         })}
                             </ul>
