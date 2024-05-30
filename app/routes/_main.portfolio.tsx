@@ -1,5 +1,9 @@
-import { HeadersFunction } from "@remix-run/node";
-import { CACHE_LIV } from "~/Constants";
+import { HeadersFunction, defer } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
+import { CACHE_LIV, PAGE, PERPAGE, projects } from "~/Constants";
+import { Projects } from "~/DTO/project";
+
+import pb from "~/components/portfolio.server";
 import { WorkPreview } from "~/components/portfolio/cards";
 export const meta: MetaFunction = () => {
     return [
@@ -19,8 +23,22 @@ export let headers: HeadersFunction = () => {
         "Cache-Control": `public, s-maxage=${CACHE_LIV}`,
     };
 };
-export default function PortfolioMain() {
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+    let { searchParams } = new URL(request.url)
+    let page = searchParams.get('page')
+    let pageNumber = page ? parseInt(page, 10) : PAGE;
 
+    if (isNaN(pageNumber)) {
+        pageNumber = PAGE;
+    }
+    pb.authStore.save(process.env.POCKETBASE_TOKEN as string, null)
+    const resultList = await pb.collection(projects).getList(pageNumber, PERPAGE, {
+        fields: 'id,projectName,tag,projectYear,sideNote',
+    }) as Projects;
+    return defer({ projects: resultList });
+};
+export default function PortfolioMain() {
+    const { projects } = useLoaderData<typeof loader>()
     return (
         <>
             <main>
@@ -33,10 +51,17 @@ export default function PortfolioMain() {
                     </div>
                 </div>
                 <div className="mx-auto md:max-w-6xl">
+                    
                     <div className="my-20 grid grid-cols-1 gap-16 p-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
-                        <WorkPreview title={'RocketCMS'} url={`/portfolio/my-text`} spanTitle={'Personal'} description={`RocketCMS lets anyone manage your website using the components you've designed.`} />
-                        <WorkPreview title={'RocketCMS'} url={`/portfolio/my-text`} spanTitle={'Personal'} description={`RocketCMS lets anyone manage your website using the components you've designed.`} />
-                        <WorkPreview title={'RocketCMS'} url={`/portfolio/my-text`} spanTitle={'Personal'} description={`RocketCMS lets anyone manage your website using the components you've designed.`} />
+                        {
+                            projects.items?.filter(item => !item.todo)
+                                .map((item, index) => {
+                                    return (
+                                        <WorkPreview year={item.projectYear} key={index} title={item.projectName} url={`/portfolio/${item.projectName}`} spanTitle={item?.tag} description={item.sideNote} />
+                                    )
+                                })
+                        }
+                        
                     </div>
                 </div>
             </main>

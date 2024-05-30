@@ -1,8 +1,7 @@
-import { HeadersFunction, MetaFunction } from "@remix-run/node";
+import { HeadersFunction, LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
 import { defer, useLoaderData } from "@remix-run/react";
-import { CACHE_LIV, PAGE, PERPAGE, blogs } from "~/Constants";
-import { Blogs } from "~/DTO";
-import Featured from "~/components/blogs/Featured";
+import { CACHE_LIV, projects } from "~/Constants";
+import { Item } from "~/DTO/project";
 import BlogHero from "~/components/blogs/blogHero";
 import pb from "~/components/portfolio.server";
 export const meta: MetaFunction = () => {
@@ -23,26 +22,25 @@ export let headers: HeadersFunction = () => {
         "Cache-Control": `public, s-maxage=${CACHE_LIV}`,
     };
 };
-export const loader = async ({ request }: LoaderFunctionArgs) => {
-    let { searchParams } = new URL(request.url)
-    let page = searchParams.get('page')
-    let pageNumber = page ? parseInt(page, 10) : PAGE;
-
-    if (isNaN(pageNumber)) {
-        pageNumber = PAGE;
-    }
+export const loader = async ({ params }: LoaderFunctionArgs) => {
     pb.authStore.save(process.env.POCKETBASE_TOKEN as string, null)
-    const resultList = await pb.collection(blogs).getList(pageNumber, PERPAGE, {
-        fields: 'id,title,updated,heroImage,collectionId,created,featured,released',
-    }) as Blogs;
-    return defer({ blogsData: resultList });
+    const resultList = await pb.collection(projects).getFirstListItem(`projectName = "${params.slug}"`) as Item;
+    return defer({ project: resultList });
 };
 export default function Index() {
-    const data = useLoaderData<typeof loader>()
+    const {project} = useLoaderData<typeof loader>()
     return (
         <>
             <BlogHero light={true}  minor="Right Now...." major="What I'm Building" />
+            <img
+                className="w-full h-auto"
+                src={`${ENV.BASE_URL}/api/files/${project.collectionId}/${project.id}/${project.heroImage}`}
+                alt="Hero Image for this blog" />
+            <section className="wysiwyg m-auto w-full max-w-4xl font-sans p-4 mb-10" dangerouslySetInnerHTML={{ __html: `${project.markup}` }}>
 
+            </section>
+            <section className="wysiwyg m-auto w-full max-w-4xl font-sans p-4 mb-10 text-center" dangerouslySetInnerHTML={{ __html: `${project.boldMark}` }}>
+            </section>
         </>
     );
 }

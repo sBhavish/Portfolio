@@ -1,18 +1,3 @@
-export interface Technology {
-    id: number;
-    techtitle: string;
-    description: string;
-}
-
-export interface CompanyData {
-    CompData: string
-    CompTitle: string
-    collectionId: string
-    collectionName: string
-    created: string
-    id: string
-    updated: string
-}
 export interface Blogs {
     page: number
     perPage: number
@@ -27,7 +12,7 @@ export interface Item {
     created: string
     heroImage: string
     featured: boolean
-    released:boolean
+    released: boolean
     id: string
     markupContent: string
     title: string

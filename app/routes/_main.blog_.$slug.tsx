@@ -1,12 +1,12 @@
 import { HeadersFunction, LoaderFunctionArgs, json, redirect } from "@remix-run/node"
 import { useLoaderData } from "@remix-run/react"
 import { CACHE_LIV, blogs } from "~/Constants"
-import { Item } from "~/DTO"
 import pb from "~/components/portfolio.server"
 import hljs from 'highlight.js';
 import 'highlight.js/styles/github.css';
 import { useEffect } from "react"
 import { convertDateString } from "~/utils"
+import { Item } from "~/DTO/blog";
 
 export async function loader({ params }: LoaderFunctionArgs) {
     try{

@@ -1,7 +1,7 @@
 import { HeadersFunction, MetaFunction } from "@remix-run/node";
 import { defer, useLoaderData } from "@remix-run/react";
 import { CACHE_LIV, PAGE, PERPAGE, blogs } from "~/Constants";
-import { Blogs } from "~/DTO";
+import { Blogs } from "~/DTO/blog";
 import Featured from "~/components/blogs/Featured";
 import BlogHero from "~/components/blogs/blogHero";
 import pb from "~/components/portfolio.server";
