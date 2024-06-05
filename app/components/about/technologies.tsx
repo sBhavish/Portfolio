@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Technology } from "~/DTO";
+import { Technology } from "~/DTO/DTO";
 import { techJson } from "~/content/technologies";
 export default function Technologies() {
     let data: Technology[] = JSON.parse(techJson)
