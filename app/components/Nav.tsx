@@ -7,7 +7,7 @@ export default function Nav() {
             <NavLink prefetch="intent" className="header-link" to="/blog">Blog</NavLink>
             <NavLink prefetch="intent" className="header-link" to="/portfolio">Portfolio</NavLink>
             <NavLink prefetch="intent" className="header-link" to="/resume">Resume</NavLink>
-            <NavLink prefetch="intent" className="header-link" to="/uses">Uses</NavLink>
+            <NavLink prefetch="intent" className="header-link" to="/contact">Contact</NavLink>
         </nav>
 
     );

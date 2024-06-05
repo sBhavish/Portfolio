@@ -1,7 +1,7 @@
 import { HeadersFunction, defer, type MetaFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-import { about } from "~/Constants";
-import { CompanyData } from "~/DTO";
+import { CACHE_LIV, about } from "~/Constants";
+import { CompanyData } from "~/DTO/DTO";
 import HeroHome from "~/components/about/Hero";
 import About from "~/components/about/about";
 import Companies from "~/components/about/companies";
@@ -10,7 +10,7 @@ import Technologies from "~/components/about/technologies";
 import pb from "~/components/portfolio.server";
 export let headers: HeadersFunction = () => {
   return {
-    "Cache-Control": `public, s-maxage=3600`,
+    "Cache-Control": `public, s-maxage=${CACHE_LIV}`,
   };
 };
 export const meta: MetaFunction = () => {
