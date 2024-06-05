@@ -183,6 +183,7 @@ main {
 .light-bg{
     background: var(--color-background-light) !important;
 }
+
 .company-slides  img{
     width: 10rem;
     margin: 0 auto;
@@ -191,7 +192,7 @@ main {
 }
 .company-slides >ul{
     display: grid;
-    gap:2rem;
+    gap: 1rem;
     grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 .company-slides > ul > li{
@@ -203,6 +204,13 @@ main {
 .company-slides>ul>li:hover,
 .company-slides>ul>li:focus {
     filter: grayscale(0);
+}
+@media (min-width: 768px) {
+    .company-slides>ul {
+        display: grid;
+        gap: 2rem;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
 }
 .blog-preview {
     color: #24292e;

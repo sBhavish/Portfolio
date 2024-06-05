@@ -36,7 +36,7 @@ export default function Technologies() {
                             This is a <b className="font-extrabold">non exhaustive</b> list of tools and technologies I use to make products come to life. I'm also very comfortable pushing pixels in Figma, Adobe, Video, and 3D modelling.
                         </blockquote>
                     ) : (
-                        <blockquote className="my-8 basis-3/5 text-xl font-light leading-relaxed text-white text-pretty font-sans tracking-wide">
+                        <blockquote className="my-8 basis-3/5 text-xl font-light leading-relaxed text-white text-pretty font-sans tracking-wide text-justify">
                             {description}
                         </blockquote>
                     )}
