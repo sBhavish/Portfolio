@@ -1,7 +1,7 @@
 import { HeadersFunction, defer, type MetaFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { CACHE_LIV, about } from "~/Constants";
-import { CompanyData } from "~/DTO";
+import { CompanyData } from "~/DTO/DTO";
 import HeroHome from "~/components/about/Hero";
 import About from "~/components/about/about";
 import Companies from "~/components/about/companies";
