@@ -5,6 +5,8 @@ import z from "zod"
 import { contactSchema, ContactSchema } from "~/Form Schemas/ContactSchema";
 import { useEffect, useRef } from "react";
 import pb from "~/components/portfolio.server";
+import { sendEmail } from "~/components/portfolio.server";
+import toast, { Toaster } from "react-hot-toast";
 
 export let headers: HeadersFunction = () => {
     return {
@@ -22,9 +24,10 @@ export const meta: MetaFunction = ({ data }) => {
 }
 export const action: ActionFunction = async ({ request }) => {
     const formData = Object.fromEntries(await request.formData());
-    await new Promise((r) => setTimeout(r, 10000));
+    // await new Promise((r) => setTimeout(r, 10000));
     try {
         const validatedData = contactSchema.parse(formData);
+    await sendEmail(process.env.MAIL_USER ?? "", process.env.MAIL_PASS ?? "",process.env.POCKETBASE_EMAIL ?? ``, `Message from Portfolio contact page`, JSON.stringify(validatedData,null,2))
         return redirect('./',{
             status : 201
         })
@@ -39,8 +42,7 @@ export const action: ActionFunction = async ({ request }) => {
 export default function Contact() {
     const fetcher = useFetcher<{ errors?: Partial<Record<keyof ContactSchema, string[]>>, values?: Partial<ContactSchema> }>()
     useEffect(() => {
-        console.log(JSON.stringify(fetcher, null, 2));
-    }, [fetcher]);
+    }, [fetcher.data?.errors]);
 
     let $form = useRef<HTMLFormElement>(null);
 
@@ -50,6 +52,16 @@ export default function Contact() {
         function resetFormOnSuccess() {
             if (fetcher.state === "idle" && (fetcher.data === "") ) {
                 $form.current?.reset();
+                toast(`You're request has been received will contact you shortly 😉`,
+                    {
+                        icon: '👏',
+                        style: {
+                            borderRadius: '10px',
+                            background: '#333',
+                            color: '#fff',
+                        },
+                    }
+                );
             }
         },
         [fetcher.state, fetcher.data]
@@ -150,6 +162,10 @@ export default function Contact() {
                     </div>
                 </div>
             </fetcher.Form>
+            <Toaster
+                position="bottom-center"
+                reverseOrder={false} 
+            />
         </main>
     )
 }
