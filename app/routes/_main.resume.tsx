@@ -1,7 +1,7 @@
 import { HeadersFunction, defer, type MetaFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { CACHE_LIV, about } from "~/Constants";
-import { CompanyData } from "~/DTO";
+import { CompanyData } from "~/DTO/DTO";
 import envelope from "app/images/svg/envelope.svg";
 import me from "/app/images/me.jpeg"
 
@@ -17,21 +17,21 @@ export let headers: HeadersFunction = () => {
         "Cache-Control": `public, s-maxage=${CACHE_LIV}`,
     };
 };
-export const loader = async () => {
-    try {
-        let authData = await pb.admins.authWithPassword(process.env.POCKETBASE_EMAIL as string, process.env.POCKETBASE_PASS as string);
-        const companyRecords = await pb.collection(about).getFirstListItem('') as CompanyData
-        pb.authStore.clear()
-        return defer({ companies: companyRecords });
-    } catch (err) {
-        console.error(err);
-        return { companies: null }
-    }
+// export const loader = async () => {
+//     try {
+//         let authData = await pb.admins.authWithPassword(process.env.POCKETBASE_EMAIL as string, process.env.POCKETBASE_PASS as string);
+//         const companyRecords = await pb.collection(about).getFirstListItem('') as CompanyData
+//         pb.authStore.clear()
+//         return defer({ companies: companyRecords });
+//     } catch (err) {
+//         console.error(err);
+//         return { companies: null }
+//     }
 
-};
+// };
 
 export default function Index() {
-    const data = useLoaderData<typeof loader>()
+    // const data = useLoaderData<typeof loader>()
     return (
         <main>
             <div className="m-auto max-w-5xl py-10 md:py-20 font-sans">
