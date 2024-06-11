@@ -1,5 +1,6 @@
 import { HeadersFunction, defer, type MetaFunction } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { Await, useLoaderData } from "@remix-run/react";
+import { Suspense } from "react";
 import { CACHE_LIV, about } from "~/Constants";
 import { CompanyData } from "~/DTO/DTO";
 import HeroHome from "~/components/about/Hero";
@@ -22,24 +23,34 @@ export const meta: MetaFunction = () => {
 export const loader = async () => {
   try {
     pb.authStore.save(process.env.POCKETBASE_TOKEN as string, null)
-    const companyRecords = await pb.collection(about).getFirstListItem('') as CompanyData
+    const companyRecords = pb.collection(about).getFirstListItem('')
     return defer({ companies: companyRecords });
   } catch (err) {
     console.error(err);
-    return { companies: null }
+    return defer(
+      { companies: null }
+    )
   }
 
 };
 
 export default function Index() {
-  const data = useLoaderData<typeof loader>()
+  const { companies } = useLoaderData <typeof loader>()
   return (
     <div>
       <HeroHome />
       <About />
       <Goals />
       <Technologies />
-      <Companies data={data.companies as CompanyData} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Await resolve={companies} errorElement={<> Something went Wrong 😬</>}>
+          {(resolvedData) =>
+            <>
+              <Companies data={resolvedData as CompanyData} />
+            </>
+          }
+        </Await>
+      </Suspense>
     </div>
   );
 }
