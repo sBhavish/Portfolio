@@ -3,6 +3,8 @@ import { Await, useLoaderData } from "@remix-run/react";
 import { Suspense } from "react";
 import { CACHE_LIV, about } from "~/Constants";
 import { CompanyData } from "~/DTO/DTO";
+import ErrorIllustrator from "~/components/ErrorIllustrator";
+import Skeleton from "~/components/Skeleton";
 import HeroHome from "~/components/about/Hero";
 import About from "~/components/about/about";
 import Companies from "~/components/about/companies";
@@ -42,8 +44,8 @@ export default function Index() {
       <About />
       <Goals />
       <Technologies />
-      <Suspense fallback={<div>Loading...</div>}>
-        <Await resolve={companies} errorElement={<> Something went Wrong 😬</>}>
+      <Suspense fallback={<Skeleton count={12} />}>
+        <Await resolve={companies} errorElement={<ErrorIllustrator message={"Something went wrong while fetching the component"} />}>
           {(resolvedData) =>
             <>
               <Companies data={resolvedData as CompanyData} />
