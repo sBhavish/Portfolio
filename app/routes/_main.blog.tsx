@@ -41,8 +41,10 @@ export default function Index() {
     const data = useLoaderData<typeof loader>()
     return (
         <>
-            <BlogHero light={false} minor="Yes Another Blog....." major="Developer Ramblings" />
-            <Featured minimalBlogData={data.blogsData} />
+            <main>
+                <BlogHero light={false} minor="Yes Another Blog....." major="Developer Ramblings" />
+                <Featured minimalBlogData={data.blogsData} />
+            </main>
         </>
     );
 }

@@ -14,6 +14,7 @@ import tailwindcss from "~/tailwind.css?url";
 import HeaderComponent from "./components/header";
 import FooterComponent from "./components/footer";
 import { getEnv } from "./provider.server";
+import LoadingTest from "./components/Loading";
 
 export const links: LinksFunction = () => [
   {
@@ -62,6 +63,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <HeaderComponent />
+        <LoadingTest />
         {children}
         <ScrollRestoration />
         <FooterComponent />
@@ -101,6 +103,6 @@ export function ErrorBoundary() {
       <Layout>
         <h1>Unknown Error</h1>
       </Layout>
-      );
+    );
   }
 }
