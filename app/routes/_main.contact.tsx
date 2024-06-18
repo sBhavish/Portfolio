@@ -141,7 +141,7 @@ export default function Contact() {
                         </button>
                     </div>
                     <div className="w-full md:w-1/2 px-3">
-                        <button disabled={isNavigating} type="submit" className="flex p-2 mx-auto items-center gap-2 border-dotted border-4 bg-gray-200 hover:bg-transparent focus-within:bg-transparent outline-dashed">
+                        <button disabled={isNavigating} type="submit" className={ `flex p-2 mx-auto items-center gap-2 border-dotted border-4 bg-gray-200 hover:bg-transparent focus-within:bg-transparent outline-dashed ${ (isNavigating) ? 'cursor-not-allowed': 'cursor-pointer' }` }>
                             
                             {
                                 (isNavigating) ? 
