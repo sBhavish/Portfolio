@@ -144,6 +144,7 @@ main {
     height: calc(var(--header-height));
     padding: 0.5rem;
     object-fit: contain;
+    width: 100%;
 }
 .logo.active,
 .logo:hover,
