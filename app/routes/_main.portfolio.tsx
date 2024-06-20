@@ -45,7 +45,7 @@ export default function PortfolioMain() {
                 <div className="bg-color-background-dark text-color-background">
                     <div className="hero p-4 text-center py-20 md:py-40">
                         <h1 className="inline-block  text-xl font-extrabold md:text-4xl">
-                            <div className="font-monospace text-base text-white font-normal md:text-2xl">Right now...</div>
+                            <div className="font-monospace text-base text-white font-normal md:text-2xl py-1">Right now...</div>
                             <div className="py-2 bg-gradient-to-r from-orange-600 via-red-500 to-orange-400 text-transparent bg-clip-text px-3 text-4xl md:text-7xl">What I'm building</div>
                         </h1>
                     </div>
