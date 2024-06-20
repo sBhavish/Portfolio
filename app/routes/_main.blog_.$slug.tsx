@@ -22,7 +22,7 @@ export let headers: HeadersFunction = () => {
         "Cache-Control": `public, s-maxage=${CACHE_LIV}`,
     };
 };
-export const meta: MetaFunction = ({ data }) => {
+export const meta: MetaFunction = ({ data }: { data:any }) => {
     return [
         { title: data.blog.title as string },
         {
@@ -44,8 +44,8 @@ export default function BlogContent() {
             <section className="mx-auto max-w-6xl">
                 <div className="hero p-4 text-center py-20 md:py-40">
                     <h1 className="inline-block font-font-serif text-xl font-extrabold md:text-4xl">
-                        <div className="font-font-monospace text-base font-normal md:text-2xl">{convertDateString(data.blog.updated)}</div>
-                        <div className="bg-gradient-to-r from-orange-600 via-red-500 to-orange-400 text-transparent bg-clip-text px-3 text-4xl md:text-7xl">{data.blog.title}</div>
+                        <div className="font-font-monospace text-base font-mono font-normal md:text-2xl">{convertDateString(data.blog.updated)}</div>
+                        <div className="py-2 bg-gradient-to-r from-orange-600 via-red-500 to-orange-400 text-transparent bg-clip-text px-3 text-4xl md:text-7xl">{data.blog.title}</div>
                     </h1>
                 </div>
             </section>
