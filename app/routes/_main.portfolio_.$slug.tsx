@@ -4,6 +4,7 @@ import { CACHE_LIV, projects } from "~/Constants";
 import { Item } from "~/DTO/project";
 import BlogHero from "~/components/blogs/blogHero";
 import pb from "~/components/portfolio.server";
+import { generateSrcSet } from "~/images/resolutions";
 export const meta: MetaFunction = () => {
     return [
         { title: "Blogs" },
@@ -35,6 +36,7 @@ export default function Index() {
             <img
                 className="w-full h-auto"
                 src={`${ENV.BASE_URL}/api/files/${project.collectionId}/${project.id}/${project.heroImage}`}
+                srcSet={generateSrcSet(ENV.BASE_URL ?? "", project?.collectionId ?? "", project?.id ?? "", project?.heroImage ?? "")}
                 alt="Hero Image for this blog" />
             <section className="wysiwyg m-auto w-full max-w-4xl font-sans p-4 mb-10" dangerouslySetInnerHTML={{ __html: `${project.markup}` }}>
 

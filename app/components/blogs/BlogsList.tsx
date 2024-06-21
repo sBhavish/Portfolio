@@ -1,5 +1,6 @@
 import { Link } from "@remix-run/react";
-import { Blogs } from "~/DTO";
+import { Blogs } from "~/DTO/blog";
+import { generateSrcSet } from "~/images/resolutions";
 import { formatDateString } from "~/utils";
 
 export default function BlogsList({ minimalBlogData }: { minimalBlogData: Blogs }){
@@ -21,6 +22,7 @@ export default function BlogsList({ minimalBlogData }: { minimalBlogData: Blogs 
                                     height="auto"
                                     loading="lazy"
                                     src={`${ENV.BASE_URL}/api/files/${item.collectionId}/${item.id}/${item.heroImage}`}
+                                    srcSet={generateSrcSet(ENV.BASE_URL ?? "", item?.collectionId ?? "", item?.id ?? "", item?.heroImage ?? "")}
                                     width="auto"
                                 />
                                 <h2 className="mt-4 mb-2 text-2xl"> {item.title} </h2>
