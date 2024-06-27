@@ -16,7 +16,7 @@ export default function HeroHome() {
                             </h1>
                         </div>
                         <div>
-                            <img alt="Matthew Scholta" className="bg-gradient-to-r from-orange-600 via-red-500 to-orange-400 aspect-square max-h-32 cursor-pointer overflow-hidden rounded-full p-1 transition-transform hover:scale-110 active:rotate-6 md:max-h-40" height="auto" loading="eager" src={logo} width="auto" />
+                            <img alt="Bhavish Kotian" className="bg-gradient-to-r from-orange-600 via-red-500 to-orange-400 aspect-square max-h-32 cursor-pointer overflow-hidden rounded-full p-1 transition-transform hover:scale-110 active:rotate-6 md:max-h-40" height="auto" loading="eager" src={logo} width="auto" />
                         </div>
                     </section>
                 </div>
