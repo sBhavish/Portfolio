@@ -15,7 +15,7 @@ import HeaderComponent from "./components/header";
 import FooterComponent from "./components/footer";
 import { getEnv } from "./provider.server";
 import LoadingTest from "./components/Loading";
-
+import '@fontsource-variable/karla';
 export const links: LinksFunction = () => [
   {
     rel: "icon",

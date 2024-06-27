@@ -224,7 +224,7 @@ main {
 .wysiwyg p {
     color: #24292e;
     color: var(--color-copy);
-    font-family: "Noto Sans", sans-serif;
+    font-family: 'Karla', sans-serif;
 }
 
 .wysiwyg {
