@@ -12,10 +12,10 @@ export default function Technologies() {
     
     return (
         <>
-            <section className="bg-color-background-dark py-20 text-color-background-light">
+            <section className="bg-color-background-dark py-20 bg-white">
                 <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 md:flex-row md:py-20">
                     <div className="basis-2/5">
-                        <h2 className="mb-8 text-xl md:text-3xl text-white">
+                        <h2 className="mb-8 text-xl md:text-3xl ">
                             Technology <span className="ml-2">🧰</span>
                         </h2>
                         <div className="work-details flex flex-wrap gap-2">
@@ -32,11 +32,11 @@ export default function Technologies() {
                         </div>
                     </div>
                     {description === undefined ? (
-                        <blockquote className="my-8 basis-3/5 text-xl font-light leading-relaxed text-white text-pretty font-sans tracking-wide">
+                        <blockquote className="my-8 basis-3/5 text-xl font-light leading-relaxed text-pretty font-sans tracking-wide">
                             This is a <b className="font-extrabold">non exhaustive</b> list of tools and technologies I use to make products come to life. I'm also very comfortable pushing pixels in Figma, Adobe, Video, and 3D modelling.
                         </blockquote>
                     ) : (
-                        <blockquote className="my-8 basis-3/5 text-xl font-light leading-relaxed text-white text-pretty font-sans tracking-wide text-justify">
+                        <blockquote className="my-8 basis-3/5 text-xl font-light leading-relaxed text-pretty font-sans tracking-wide text-justify">
                             {description}
                         </blockquote>
                     )}
