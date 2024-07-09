@@ -2,6 +2,7 @@ import { HeadersFunction, defer } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { CACHE_LIV, PAGE, PERPAGE, projects } from "~/Constants";
 import { Projects } from "~/DTO/project";
+import BlogHero from "~/components/blogs/blogHero";
 
 import pb from "~/components/portfolio.server";
 import { WorkPreview } from "~/components/portfolio/cards";
@@ -56,13 +57,8 @@ export default function PortfolioMain() {
     return (
         <>
             <main>
-                    <div className="hero p-4 text-center py-20 md:py-40">
-                        <h1 className="inline-block  text-xl font-extrabold md:text-4xl">
-                            <div className="font-monospace text-base font-normal md:text-2xl py-1">Right now...</div>
-                            <div className="py-2 text-highlight px-3 text-4xl md:text-7xl">What I'm building</div>
-                        </h1>
-                    </div>
-                    <div className="bg-white py-8">
+                <BlogHero light={true} minor="Right now..." major="What I'm Building" />
+                    <div className="py-8">
                         <div className="mx-auto md:max-w-6xl">
 
                             <div className="my-20 grid grid-cols-1 gap-16 p-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
@@ -74,7 +70,6 @@ export default function PortfolioMain() {
                                             )
                                         })
                                 }
-
                             </div>
                         </div>
                     </div>

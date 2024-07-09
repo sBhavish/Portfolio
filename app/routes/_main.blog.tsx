@@ -49,7 +49,7 @@ export default function Index() {
     return (
         <>
             <main>
-                <BlogHero light={false} minor="Yes Another Blog....." major="Developer Ramblings" />
+                <BlogHero light={true} minor="Yes Another Blog....." major="Developer Ramblings" />
                 <Featured minimalBlogData={data.blogsData} />
             </main>
         </>
