@@ -16,14 +16,30 @@
     --color-copy: #24292e;
     --color-copy-dark: #57606a;
     --color-primary: red;
-}
 
+    --duration-text: 8s;
+    --duration-bg: 3s;
+}
+@keyframes gradient {
+    0% {
+            background-position: 0% 50%;
+        }
+    
+        50% {
+            background-position: 100% 50%;
+        }
+    
+        100% {
+            background-position: 0% 50%;
+        }
+}
 :root {
     --font-monospace:"Space Mono", monospace;;
     --font-sans-serif: sans-serif;
     --font-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     --header-height: 3.5rem;
     --footer-height: 4rem;
+    --title-background-colour: #ffff;
 }
 * {
     box-sizing: border-box;
@@ -82,11 +98,39 @@ blockquote {
     overflow: visible;
     text-align: center; 
 }
-.font-serif {
+
+.font-serif, .content-font{
     font-family: "Noto Sans", sans-serif;
 }
 .font-monospace{
     font-family: var(--font-monospace);
+}
+.text-highlight {
+    animation: gradient 8s ease infinite;
+    animation: gradient var(--duration-text) ease infinite;
+    background-size: 400% 400%;
+    letter-spacing: -.05em;
+    line-height: 1.1 !important;
+    overflow: visible;
+    background-image: linear-gradient(to right, var(--tw-gradient-stops));
+    --tw-gradient-from: #f00 var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(255, 0, 0, 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+    --tw-gradient-to: #3b82f6 var(--tw-gradient-to-position);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.custom-bg-gradient {
+    animation: gradient 8s ease infinite;
+    animation: gradient var(--duration-text) ease infinite;
+    background-size: 400% 400%;
+    background-image: linear-gradient(to top right, var(--tw-gradient-stops));
+    --tw-gradient-from: #f00 var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(255, 0, 0, 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+    --tw-gradient-to: #3b82f6 var(--tw-gradient-to-position);
 }
 @media (min-width: 768px) {
     :root {
@@ -118,7 +162,14 @@ main {
     min-height: calc(100vh - var(--header-height) - var(--footer-height));
     background: var(--color-background);
 }
-
+.header{
+    background-color: #fffc;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(4.5px);
+}
+.title-bg{
+    background: var(--title-background-colour);
+}
 .header-link {
     align-items: center;
     color: inherit;
@@ -158,11 +209,7 @@ main {
         padding: .5rem 1rem;
     }
 }
-.bg-color-background-dark {
-    --tw-bg-opacity: 1;
-    background-color: #24292e;
-    background-color: rgba(36, 41, 46, var(--tw-bg-opacity));
-}
+
 .text-color-background-dark {
     --tw-text-opacity: 1;
     color: #24292e;
@@ -177,9 +224,15 @@ main {
 }
 
 .work-details button{
-    color: #24292e;
-    color: rgba(36, 41, 46, var(--tw-text-opacity));
-    background-color: white;
+    border-width: 1px;
+    --tw-bg-opacity: 1;
+    background-color: #f4f5f6;
+    background-color: rgba(244, 245, 246, var(--tw-bg-opacity));
+    --tw-text-opacity: 1;
+    color: #57606a;
+    color: rgba(87, 96, 106, var(--tw-text-opacity));
+    transition: all .14s ease-out;
+    border-color: #0003;
 }
 .light-bg{
     background: var(--color-background-light) !important;
@@ -188,6 +241,7 @@ main {
 .company-slides  img{
     width: 10rem;
     margin: 0 auto;
+    mix-blend-mode: multiply;
     aspect-ratio: 1/1;
     object-fit: contain;
 }
@@ -354,7 +408,6 @@ ol {
     -webkit-backdrop-filter: blur(5px);
 }
 .custom-gradient-text {
-    background-image: linear-gradient(to right, #dd6b20, #ef4444, #f97316);
     color: transparent;
     -webkit-background-clip: text;
     background-clip: text;

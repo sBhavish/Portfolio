@@ -10,13 +10,13 @@ export default function HeroHome() {
                                 <div className="font-monospace text-base font-normal md:text-2xl">
                                     <span className="whitespace-nowrap">A Software Engineer</span>
                                 </div>
-                                <div className="py-2 bg-gradient-to-r from-orange-600 via-red-500 to-orange-400 inline-block text-transparent bg-clip-text px-3 text-4xl md:text-7xl">
+                                <div className="py-2 text-highlight inline-block text-transparent bg-clip-text px-3 text-4xl md:text-7xl">
                                     Bhavish Kotian
                                 </div>
                             </h1>
                         </div>
                         <div>
-                            <img alt="Bhavish Kotian" className="bg-gradient-to-r from-orange-600 via-red-500 to-orange-400 aspect-square max-h-32 cursor-pointer overflow-hidden rounded-full p-1 transition-transform hover:scale-110 active:rotate-6 md:max-h-40" height="auto" loading="eager" src={logo} width="auto" />
+                            <img alt="Bhavish Kotian" className="custom-bg-gradient aspect-square max-h-32 cursor-pointer overflow-hidden rounded-full p-1 transition-transform hover:scale-110 active:rotate-6 md:max-h-40" height="auto" loading="eager" src={logo} width="auto" />
                         </div>
                     </section>
                 </div>

@@ -7,14 +7,24 @@ import 'highlight.js/styles/github.css';
 import { useEffect } from "react"
 import { convertDateString } from "~/utils"
 import { Item } from "~/DTO/blog";
+import { redisClient, saveCache } from "~/functions/redis.server";
 
 export async function loader({ params }: LoaderFunctionArgs) {
     try{
+        const cache = await redisClient(`${blogs}-${params.slug}`)
+        if (cache !== null) {
+            const parsedCache: Item = JSON.parse(cache);
+            return json({ blog: parsedCache });
+        }
         const blog = await pb.collection(blogs).getFirstListItem(`title = "${params.slug}"`) as Item
+        saveCache(`${blogs}-${params.slug}`, blog)
         return json({ blog })
     }
     catch(err){
-            throw redirect('./404-not-found')
+        throw new Response(null, {
+            status: 404,
+            statusText: "Not Found",
+        });
     }
 }
 export let headers: HeadersFunction = () => {
@@ -46,7 +56,7 @@ export default function BlogContent() {
                 <div className="hero p-4 text-center py-20 md:py-40">
                     <h1 className="inline-block font-font-serif text-xl font-extrabold md:text-4xl">
                         <div className="font-font-monospace text-base font-mono font-normal md:text-2xl">{convertDateString(data.blog.updated)}</div>
-                        <div dangerouslySetInnerHTML={{ __html: `<h1>${ title }</h1>` }} className="py-2 custom-gradient-text px-3 text-4xl md:text-7xl"/>
+                        <div dangerouslySetInnerHTML={{ __html: `<h1>${ title }</h1>` }} className="py-2 custom-gradient-text text-highlight px-3 text-4xl md:text-7xl"/>
                     </h1>
                 </div>
             </section>
@@ -55,7 +65,7 @@ export default function BlogContent() {
                 src={`${ENV.BASE_URL}/api/files/${data.blog.collectionId}/${data.blog.id}/${data.blog.heroImage}`}
                 alt="Hero Image for this blog" />
             <div className="my-8 md:my-12 m-auto w-full max-w-4xl p-4">
-                <h2 dangerouslySetInnerHTML={{ __html: `<h1>${ title }</h1>` }} className="custom-gradient-text m-0 mb-2 inline-block text-left text-3xl md:text-4xl">
+                <h2 dangerouslySetInnerHTML={{ __html: `<h1>${ title }</h1>` }} className="custom-gradient-text text-highlight m-0 mb-2 inline-block text-left text-3xl md:text-4xl">
                     
                 </h2>
                 <div className="font-monospace text-sm">
